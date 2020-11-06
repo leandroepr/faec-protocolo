@@ -34,4 +34,9 @@ public class LoginResponse {
         this.profile = profile;
     }
 
+    @Override
+    public String toString() {
+        return "LoginResponse{" + "name=" + name + ", username=" + username + ", profile=" + profile + '}';
+    }
+
 }
