@@ -1,5 +1,7 @@
 package br.com.faec.protocol.domain.usecases.security.login;
 
+import br.com.faec.protocol.domain.entities.profile.Person;
+import br.com.faec.protocol.domain.entities.security.User;
 import br.com.faec.protocol.domain.exception.security.LoginException;
 import br.com.faec.protocol.domain.gateways.People;
 import br.com.faec.protocol.domain.gateways.Users;
@@ -20,18 +22,18 @@ public class LoginInteractor implements LoginUseCase {
 
     @Override
     public LoginResponse login(LoginRequest params) throws LoginException {
-        var user = users.getUserByUsername(params.getUsername());
-        var userNotFound = user == null;
+        User user = users.getUserByUsername(params.getUsername());
+        boolean userNotFound = user == null;
         if (userNotFound) {
             throw new LoginException();
         }
         @SuppressWarnings("null")
-        var wrongPassword = !user.validatePassword(params.getPassword());
+        boolean wrongPassword = !user.validatePassword(params.getPassword());
         if (wrongPassword) {
             throw new LoginException();
         }
-        var response = new LoginResponse();
-        var person = people.getPersonById(user.getId());
+        LoginResponse response = new LoginResponse();
+        Person person = people.getPersonById(user.getId());
         response.setUsername(user.getLogin());
         response.setName(person.getName());
         response.setProfile(user.getProfile().getName());
