@@ -28,11 +28,11 @@ public class Program {
                     return null;
                 }
 
-                var user = new User();
+                User user = new User();
                 user.setId(1);
                 user.setLogin("lreis");
                 user.setPassword("senha123");
-                var profile = new Profile();
+                Profile profile = new Profile();
                 profile.setId(1);
                 profile.setName("admin");
                 profile.setDisplayName("Administrador");
