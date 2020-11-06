@@ -24,12 +24,12 @@ public class LoginPresenter {
     }
 
     public void btnLoginPerformed() {
-        String username = view.getUsername();
-        String password = view.getPassword();
+        var username = view.getUsername();
+        var password = view.getPassword();
 
-        LoginRequest request = new LoginRequest(username, password);
+        var request = new LoginRequest(username, password);
         try {
-            LoginResponse response = usecase.login(request);
+            var response = usecase.login(request);
             onLogin.call(response);
         } catch (LoginException ex) {
             view.showErrorMessage("Usuário ou senha invalido!");
